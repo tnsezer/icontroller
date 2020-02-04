@@ -22,16 +22,17 @@ class DateUtil
     }
 
     /**
-     * @return \DateTime
+     * @param string $format
+     * @return string
      */
-    public function getDateTime(): \DateTime
+    public function getDateTime(string $format = 'Y-m-d'): string
     {
-        return $this->dateTime;
+        return $this->dateTime->format($format);
     }
 
     /**
      * @param int $month
-     * @return $this
+     * @return DateUtil
      */
     public function setMonth(int $month): self
     {
@@ -46,7 +47,7 @@ class DateUtil
 
     /**
      * @param int $day
-     * @return $this
+     * @return DateUtil
      */
     public function setDay(int $day): self
     {
@@ -60,33 +61,36 @@ class DateUtil
     }
 
     /**
-     * @return \DateTime
+     * @return DateUtil
      */
-    public function getLastWeekDayOfMonth(): \DateTime
+    public function getLastWeekDayOfMonth(): self
     {
         $this->dateTime->modify("last day of this month");
-        return $this->dateTime;
+        return $this;
     }
 
-    public function getLastFridayOfMonth(): \DateTime
+    public function getLastFridayOfMonth(): self
     {
         $this->dateTime->modify("last Friday of this month");
-        return $this->dateTime;
+        return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateUtil
      */
-    public function get15thOfMonth(): \DateTime
+    public function get15thOfMonth(): self
     {
         $this->setDay(15);
-        return $this->dateTime;
+        return $this;
     }
 
-    public function getWednesdayAfter15thOfMonth(): \DateTime
+    /**
+     * @return DateUtil
+     */
+    public function getWednesdayAfter15thOfMonth(): self
     {
         $this->dateTime->modify("third Wednesday of this month");
-        return $this->dateTime;
+        return $this;
     }
 
     /**

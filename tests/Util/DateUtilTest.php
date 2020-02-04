@@ -23,20 +23,19 @@ class DateUtilTest extends TestCase
 
     public function testGetDateTime()
     {
-        $this->assertInstanceOf(\DateTime::class, $this->dateUtil->getDateTime());
-        $this->assertEquals((new \DateTime('2019-01-01'))->format('Y-m-d'), $this->dateUtil->getDateTime()->format('Y-m-d'));
+        $this->assertEquals((new \DateTime('2019-01-01'))->format('Y-m-d'), $this->dateUtil->getDateTime());
     }
 
     public function testSetMonth()
     {
-        $this->assertEquals(1, $this->dateUtil->setMonth(1)->getDateTime()->format('m'));
-        $this->assertEquals(5, $this->dateUtil->setMonth(5)->getDateTime()->format('m'));
+        $this->assertEquals(1, $this->dateUtil->setMonth(1)->getDateTime('m'));
+        $this->assertEquals(5, $this->dateUtil->setMonth(5)->getDateTime('m'));
     }
 
     public function testSetDay()
     {
-        $this->assertEquals(1, $this->dateUtil->setDay(1)->getDateTime()->format('d'));
-        $this->assertEquals(5, $this->dateUtil->setDay(5)->getDateTime()->format('d'));
+        $this->assertEquals(1, $this->dateUtil->setDay(1)->getDateTime('d'));
+        $this->assertEquals(5, $this->dateUtil->setDay(5)->getDateTime('d'));
     }
 
     public function testGetNameOfMonth()
@@ -47,26 +46,26 @@ class DateUtilTest extends TestCase
     public function testGetLastWeekDayOfMonth()
     {
         $dateUtil = $this->createDateUtil('2019-01-31');
-        $this->assertEquals('2019-01-31', $dateUtil->getLastWeekDayOfMonth()->format('Y-m-d'));
+        $this->assertEquals('2019-01-31', $dateUtil->getLastWeekDayOfMonth()->getDateTime('Y-m-d'));
     }
 
     public function testGetLastFridayOfMonth()
     {
         $dateUtil = $this->createDateUtil('2019-03-01');
-        $this->assertEquals('2019-03-29', $dateUtil->getLastFridayOfMonth()->format('Y-m-d'));
+        $this->assertEquals('2019-03-29', $dateUtil->getLastFridayOfMonth()->getDateTime('Y-m-d'));
     }
 
     public function testGet15thOfMonth()
     {
         $dateUtil = $this->createDateUtil('2019-01-15');
-        $this->assertEquals('2019-01-15', $dateUtil->get15thOfMonth()->format('Y-m-d'));
+        $this->assertEquals('2019-01-15', $dateUtil->get15thOfMonth()->getDateTime('Y-m-d'));
     }
 
     public function testGetWednesdayAfter15thOfMonth()
     {
         $dateUtil = $this->createDateUtil('2019-06-15');
-        $this->assertGreaterThan(15, $dateUtil->getWednesdayAfter15thOfMonth()->format('d'));
-        $this->assertEquals(3, $dateUtil->getWednesdayAfter15thOfMonth()->format('N'));
+        $this->assertGreaterThan(15, $dateUtil->getWednesdayAfter15thOfMonth()->getDateTime('d'));
+        $this->assertEquals(3, $dateUtil->getWednesdayAfter15thOfMonth()->getDateTime('N'));
     }
 
     public function testIsWeekend()

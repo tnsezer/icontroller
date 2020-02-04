@@ -71,16 +71,16 @@ class PayrollCommand extends Command
             $nameOfMonth = $dateUtil->getNameOfMonth();
 
             $salaryDateObject = $dateUtil->getLastWeekDayOfMonth();
-            if ($dateUtil->isWeekend()) {
+            if ($salaryDateObject->isWeekend()) {
                 $salaryDateObject = $dateUtil->getLastFridayOfMonth();
             }
-            $salaryDate = $salaryDateObject->format('Y-m-d');
+            $salaryDate = $salaryDateObject->getDateTime('Y-m-d');
 
             $bonusDateObject = $dateUtil->get15thOfMonth();
-            if ($dateUtil->isWeekend()) {
+            if ($bonusDateObject->isWeekend()) {
                 $bonusDateObject = $dateUtil->getWednesdayAfter15thOfMonth();
             }
-            $bonusDate = $bonusDateObject->format('Y-m-d');
+            $bonusDate = $bonusDateObject->getDateTime('Y-m-d');
 
             $data[] = [$nameOfMonth, $salaryDate, $bonusDate];
         }
