@@ -13,11 +13,11 @@ chmod +x bin/console
 
 ## How to run
 ```bash
-bin/console payroll:export
+./bin/console payroll:export
 ```
 
 ## How to run tests?
 
 ```bash
-vendor/bin/phpunit -c phpunit.xml
+./vendor/bin/phpunit -c phpunit.xml
 ```
